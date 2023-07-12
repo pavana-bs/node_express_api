@@ -1,4 +1,4 @@
-var express = require("express");
+const express = require("express");
 const axios = require("axios");
 
 const app = express();
@@ -25,16 +25,17 @@ async function getTokenList(chainNumber) {
   }
 }
 
-app.get("/tokenlist/:chain", async (req, res) => {
+app.get('/tokenlist/:chain', async (req, res) => {
   try {
     const { chain } = req.params;
     const tokenList = await getTokenList(chain);
     res.json(tokenList);
   } catch (error) {
-    console.error("Error:", error);
-    res.status(500).json({ error: "Internal Server Error" });
+    console.error('Error:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
   }
 });
+
 app.listen(3002, function () {
   console.log("port 3002!");
 });
